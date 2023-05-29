@@ -16,8 +16,9 @@ RUN apt-get update
 RUN apt-get install -y nano git curl wget
 
 # Install Google Chrome
-RUN wget -O $INST_SCRIPTS/chrome/install_chrome.sh https://raw.githubusercontent.com/kasmtech/workspaces-images/develop/src/ubuntu/install/chrome/install_chrome.sh
-RUN bash $INST_SCRIPTS/chrome/install_chrome.sh  && rm -rf $INST_SCRIPTS/chrome/
+RUN wget -O /tmp/install_chrome.sh https://raw.githubusercontent.com/kasmtech/workspaces-images/develop/src/ubuntu/install/chrome/install_chrome.sh
+RUN cat /tmp/install_chrome.sh
+RUN bash /tmp/install_chrome.sh  && rm -rf /tmp/install_chrome.sh
 
 # Install Firefox
 RUN wget -O $INST_SCRIPTS/firefox/install_firefox.sh https://raw.githubusercontent.com/kasmtech/workspaces-images/develop/src/ubuntu/install/firefox/install_firefox.sh
