@@ -3,11 +3,12 @@ ARG BASE_IMAGE="core-ubuntu-focal"
 FROM kasmweb/$BASE_IMAGE:$BASE_TAG
 USER root
 
-ENV WEBSTORM_VERSION 2022.2.3
 ENV HOME /home/kasm-default-profile
 ENV STARTUPDIR /dockerstartup
 ENV INST_SCRIPTS $STARTUPDIR/install
 WORKDIR $HOME
+
+ENV WEBSTORM_VERSION 2023.1.2
 
 ####################
 
@@ -34,7 +35,7 @@ RUN apt-get install -y nodejs
 ######## Install Specific Application ########
 
 # Install WebStorm
-RUN wget -O /tmp/webstorm.tar.gz https://download.jetbrains.com/webstorm/WebStorm-2022.2.3.tar.gz
+RUN wget -O /tmp/webstorm.tar.gz https://download.jetbrains.com/webstorm/WebStorm-$WEBSTORM_VERSION.tar.gz
 RUN mkdir /opt/webstorm && tar -xzf /tmp/webstorm.tar.gz -C /opt/webstorm --strip-components 1
 RUN rm -rf /tmp/webstorm.tar.gz
 
