@@ -54,6 +54,7 @@ COPY ./resources/common/background.png /usr/share/extra/backgrounds/bg_default.p
 ######### End Customizations ###########
 
 RUN chown 1000:0 $HOME
+RUN $STARTUPDIR/set_user_permission.sh $HOME
 
 ENV HOME /home/kasm-user
 WORKDIR $HOME
