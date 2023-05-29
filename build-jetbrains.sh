@@ -42,7 +42,7 @@ echo ""
 read -p "Start build? (y/n)?" choice
 case "$choice" in 
   y|Y ) clear;;
-  n|N ) echo "Goodbye!"; return;;
+  n|N ) echo "Goodbye!"; exit 1;;
   * ) echo "Invalid input - aborting!"; exit 1;;
 esac
 
