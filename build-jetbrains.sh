@@ -37,6 +37,8 @@ else
 	echo "All images will be built."
 fi
 
+echo ""
+
 read -p "Start build? (y/n)?" choice
 case "$choice" in 
   y|Y ) clear;;
