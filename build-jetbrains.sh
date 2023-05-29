@@ -11,7 +11,7 @@ read -p "Build all images? (y/n)?" choice
 case "$choice" in 
   y|Y ) BUILD_ALL=true;;
   n|N ) BUILD_ALL=false;;
-  * ) echo "Invalid input - aborting!"; return;;
+  * ) echo "Invalid input - aborting!"; exit 1;;
 esac
 
 if [ "$BUILD_ALL" != true ]; then
@@ -19,7 +19,7 @@ if [ "$BUILD_ALL" != true ]; then
 	case "$choice" in 
 	  y|Y ) BUILD_WEBSTORM=true;;
 	  n|N ) BUILD_WEBSTORM=false;;
-	  * ) echo "Invalid input - aborting!"; return;;
+	  * ) echo "Invalid input - aborting!"; exit 1;;
 	esac
 fi
 
@@ -40,9 +40,10 @@ read -p "Start build? (y/n)?" choice
 case "$choice" in 
   y|Y ) clear;;
   n|N ) echo "Goodbye!"; return;;
-  * ) echo "Invalid input - aborting!"; return;;
+  * ) echo "Invalid input - aborting!"; exit 1;;
 esac
 
 # Webstorm
+if [ "$BUILD_ALL" == true ] || [ "$BUILD_WEBSTORM" == true ]; then
 echo "Building Webstorm $WEBSTORM_VERSION..."
 sudo docker build -t webstorm:$WEBSTORM_VERSION --build-arg WEBSTORM_VERSION=$WEBSTORM_VERSION -f dockerfile-webstorm .
