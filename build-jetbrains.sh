@@ -15,6 +15,7 @@ case "$choice" in
 esac
 
 if [ "$BUILD_ALL" != true ]; then
+	clear
 	read -p "Build Webstorm $WEBSTORM_VERSION? (y/n)?" choice
 	case "$choice" in 
 	  y|Y ) BUILD_WEBSTORM=true;;
