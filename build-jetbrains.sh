@@ -1,6 +1,32 @@
 #!/bin/bash
 
+BUILD_ALL=false
+BUILD_WEBSTORM=false
+
 WEBSTORM_VERSION=2023.1.2
+
+read -p "Build all images? (y/n)?" choice
+case "$choice" in 
+  y|Y ) BUILD_ALL=true;;
+  n|N ) BUILD_ALL=false;;
+  * ) echo "Invalid input";;
+esac
+
+if [ "$BUILD_ALL" != true ]; then
+	read -p "Build Webstorm $WEBSTORM_VERSION? (y/n)?" choice
+	case "$choice" in 
+	  y|Y ) BUILD_WEBSTORM=true;;
+	  n|N ) BUILD_WEBSTORM=false;;
+	  * ) echo "Invalid input";;
+	esac
+fi
+
+echo "The following images will be built:"
+if [ "$BUILD_ALL" != true ]; then
+	echo "[x] Webstorm $WEBSTORM_VERSION"
+else
+	echo "[ ] Webstorm $WEBSTORM_VERSION"
+fi
 
 # Webstorm
 echo "Building Webstorm $WEBSTORM_VERSION..."
