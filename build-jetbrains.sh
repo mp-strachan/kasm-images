@@ -64,7 +64,7 @@ case "$choice" in
 esac
 
 # Datagrip
-if [ "$BUILD_ALL" == true ] || [ "$BUILD_WEBSTORM" == true ]; then
+if [ "$BUILD_ALL" == true ] || [ "$BUILD_DATAGRIP" == true ]; then
 	echo "Building Datagrip $DATAGRIP_VERSION..."
 	sudo docker build -t datagrip:$DATAGRIP_VERSION --build-arg DATAGRIP_VERSION=$DATAGRIP_VERSION -f dockerfile-datagrip .
 	clear
