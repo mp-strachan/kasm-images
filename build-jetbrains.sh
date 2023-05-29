@@ -45,5 +45,6 @@ esac
 
 # Webstorm
 if [ "$BUILD_ALL" == true ] || [ "$BUILD_WEBSTORM" == true ]; then
-echo "Building Webstorm $WEBSTORM_VERSION..."
-sudo docker build -t webstorm:$WEBSTORM_VERSION --build-arg WEBSTORM_VERSION=$WEBSTORM_VERSION -f dockerfile-webstorm .
+	echo "Building Webstorm $WEBSTORM_VERSION..."
+	sudo docker build -t webstorm:$WEBSTORM_VERSION --build-arg WEBSTORM_VERSION=$WEBSTORM_VERSION -f dockerfile-webstorm .
+fi
