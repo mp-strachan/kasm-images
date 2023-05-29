@@ -9,7 +9,6 @@ ENV INST_SCRIPTS $STARTUPDIR/install
 WORKDIR $HOME
 
 ARG WEBSTORM_VERSION
-ENV env_WEBSTORM_VERSION=$WEBSTORM_VERSION
 
 ####################
 
@@ -36,7 +35,7 @@ RUN apt-get install -y nodejs
 ######## Install Specific Application ########
 
 # Install WebStorm
-RUN wget -O /tmp/webstorm.tar.gz https://download.jetbrains.com/webstorm/WebStorm-$env_WEBSTORM_VERSION.tar.gz
+RUN wget -O /tmp/webstorm.tar.gz https://download.jetbrains.com/webstorm/WebStorm-$WEBSTORM_VERSION.tar.gz
 RUN mkdir /opt/webstorm && tar -xzf /tmp/webstorm.tar.gz -C /opt/webstorm --strip-components 1
 RUN rm -rf /tmp/webstorm.tar.gz
 
