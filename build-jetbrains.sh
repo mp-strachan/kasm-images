@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+
 BUILD_ALL=false
 BUILD_WEBSTORM=false
 
@@ -21,11 +23,15 @@ if [ "$BUILD_ALL" != true ]; then
 	esac
 fi
 
-echo "The following images will be built:"
+clear
+
 if [ "$BUILD_ALL" != true ]; then
-	echo "[x] Webstorm $WEBSTORM_VERSION"
-else
-	echo "[ ] Webstorm $WEBSTORM_VERSION"
+	echo "The following images will be built:"
+	if [ "$BUILD_WEBSTORM" == true ]; then
+		echo "[x] Webstorm $WEBSTORM_VERSION"
+	else
+		echo "[ ] Webstorm $WEBSTORM_VERSION"
+	fi
 fi
 
 # Webstorm
