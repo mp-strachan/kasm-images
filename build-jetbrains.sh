@@ -11,7 +11,7 @@ read -p "Build all images? (y/n)?" choice
 case "$choice" in 
   y|Y ) BUILD_ALL=true;;
   n|N ) BUILD_ALL=false;;
-  * ) echo "Invalid input";;
+  * ) echo "Invalid input - aborting!"; return;;
 esac
 
 if [ "$BUILD_ALL" != true ]; then
@@ -19,7 +19,7 @@ if [ "$BUILD_ALL" != true ]; then
 	case "$choice" in 
 	  y|Y ) BUILD_WEBSTORM=true;;
 	  n|N ) BUILD_WEBSTORM=false;;
-	  * ) echo "Invalid input";;
+	  * ) echo "Invalid input - aborting!"; return;;
 	esac
 fi
 
@@ -32,7 +32,16 @@ if [ "$BUILD_ALL" != true ]; then
 	else
 		echo "[ ] Webstorm $WEBSTORM_VERSION"
 	fi
+else
+	echo "All images will be built."
 fi
+
+read -p "Start build? (y/n)?" choice
+case "$choice" in 
+  y|Y ) clear;;
+  n|N ) echo "Goodbye!"; return;;
+  * ) echo "Invalid input - aborting!"; return;;
+esac
 
 # Webstorm
 echo "Building Webstorm $WEBSTORM_VERSION..."
