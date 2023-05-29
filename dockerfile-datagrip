@@ -1,0 +1,61 @@
+ARG BASE_TAG="develop"
+ARG BASE_IMAGE="core-ubuntu-focal"
+FROM kasmweb/$BASE_IMAGE:$BASE_TAG
+USER root
+
+ENV HOME /home/kasm-default-profile
+ENV STARTUPDIR /dockerstartup
+ENV INST_SCRIPTS $STARTUPDIR/install
+WORKDIR $HOME
+
+ARG DATAGRIP_VERSION
+
+####################
+
+# Install tools
+RUN apt-get update
+RUN apt-get install -y nano git curl wget
+
+# Install Google Chrome
+RUN wget -O /tmp/install_chrome.sh https://raw.githubusercontent.com/kasmtech/workspaces-images/develop/src/ubuntu/install/chrome/install_chrome.sh
+RUN bash /tmp/install_chrome.sh  && rm -rf /tmp/install_chrome.sh
+
+# Install Firefox
+RUN wget -O /tmp/install_firefox.sh https://raw.githubusercontent.com/kasmtech/workspaces-images/develop/src/ubuntu/install/firefox/install_firefox.sh
+RUN bash /tmp/install_firefox.sh && rm -rf /tmp/install_firefox.sh
+
+
+####### Install Dev toolchains for language ########
+
+# No tools
+
+
+######## Install Specific Application ########
+
+# Install Datagrip
+RUN wget -O /tmp/datagrip.tar.gz https://download.jetbrains.com/datagrip/datagrip-$DATAGRIP_VERSION.tar.gz
+RUN mkdir /opt/datagrip && tar -xzf /tmp/datagrip.tar.gz -C /opt/datagrip --strip-components 1
+RUN rm -rf /tmp/datagrip.tar.gz
+
+COPY ./resources/datagrip/custom_startup.sh $STARTUPDIR/custom_startup.sh
+RUN chmod +x $STARTUPDIR/custom_startup.sh
+RUN chmod 755 $STARTUPDIR/custom_startup.sh
+
+
+####### Lockdown #########
+
+# Update the desktop environment to be optimized for a single application
+RUN cp $HOME/.config/xfce4/xfconf/single-application-xfce-perchannel-xml/* $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/
+COPY ./resources/common/background.png /usr/share/extra/backgrounds/bg_default.png
+RUN apt-get remove -y xfce4-panel
+
+######### End Customizations ###########
+
+RUN chown 1000:0 $HOME
+RUN $STARTUPDIR/set_user_permission.sh $HOME
+
+ENV HOME /home/kasm-user
+WORKDIR $HOME
+RUN mkdir -p $HOME && chown -R 1000:0 $HOME
+
+USER 1000
