@@ -9,7 +9,7 @@ BUILD_WEBSTORM=false
 DATAGRIP_VERSION=2023.1.2
 WEBSTORM_VERSION=2023.1.2
 
-read -p "Build all images? (y/n)?" choice
+read -p "Build all images? (y/n)?  " choice
 case "$choice" in 
   y|Y ) BUILD_ALL=true;;
   n|N ) BUILD_ALL=false;;
@@ -18,7 +18,7 @@ esac
 
 if [ "$BUILD_ALL" != true ]; then
 	clear
-	read -p "Build Datagrip $DATAGRIP_VERSION? (y/n)?" choice
+	read -p "Build Datagrip $DATAGRIP_VERSION? (y/n)?  " choice
 	case "$choice" in 
 	  y|Y ) BUILD_DATAGRIP=true;;
 	  n|N ) BUILD_DATAGRIP=false;;
@@ -26,7 +26,7 @@ if [ "$BUILD_ALL" != true ]; then
 	esac
 
 	clear
-	read -p "Build Webstorm $WEBSTORM_VERSION? (y/n)?" choice
+	read -p "Build Webstorm $WEBSTORM_VERSION? (y/n)?  " choice
 	case "$choice" in 
 	  y|Y ) BUILD_WEBSTORM=true;;
 	  n|N ) BUILD_WEBSTORM=false;;
@@ -56,7 +56,7 @@ fi
 
 echo ""
 
-read -p "Start build? (y/n)?" choice
+read -p "Start build? (y/n)?  " choice
 case "$choice" in 
   y|Y ) clear;;
   n|N ) clear; echo "Goodbye!"; exit 1;;
