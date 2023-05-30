@@ -21,8 +21,9 @@ case "$choice" in
   * ) echo "Invalid input - aborting!"; exit 1;;
 esac
 
+echo ""
+
 if [ "$BUILD_ALL" != true ]; then
-	clear
 	read -p "Build Datagrip $DATAGRIP_VERSION? (y/n)?  " choice
 	case "$choice" in 
 	  y|Y ) BUILD_DATAGRIP=true;;
@@ -30,7 +31,6 @@ if [ "$BUILD_ALL" != true ]; then
 	  * ) echo "Invalid input - aborting!"; exit 1;;
 	esac
 
-	clear
 	read -p "Build Webstorm $WEBSTORM_VERSION? (y/n)?  " choice
 	case "$choice" in 
 	  y|Y ) BUILD_WEBSTORM=true;;
