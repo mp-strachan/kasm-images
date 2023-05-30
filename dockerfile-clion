@@ -37,7 +37,7 @@ RUN apt-get install -y build-essential
 ######## Install Specific Application ########
 
 # Install CLion
-RUN wget -O /tmp/clion.tar.gz https://download.jetbrains.com/cpp/CLion-$DATAGRIP_VERSION.tar.gz
+RUN wget -O /tmp/clion.tar.gz https://download.jetbrains.com/cpp/CLion-$CLION_VERSION.tar.gz
 RUN mkdir /opt/clion && tar -xzf /tmp/clion.tar.gz -C /opt/clion --strip-components 1
 RUN rm -rf /tmp/clion.tar.gz
 
