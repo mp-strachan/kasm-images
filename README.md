@@ -19,6 +19,11 @@ The following IDE's have images, with the listed tools
 
 * [GoLand](https://www.jetbrains.com/goland/) - A Go IDE with extended support for JavaScript, TypeScript, and databases
 
+* [IntelliJ IDEA](https://www.jetbrains.com/idea/) - The Leading Java and Kotlin IDE
+	* Zip / UnZip
+	* OpenJDK
+	* [Kotlin](https://kotlinlang.org/)
+
 * [WebStorm](https://www.jetbrains.com/webstorm/) - The smartest JavaScript IDE
 	* [NodeJS 18 LTS](https://nodejs.org/)
 	* [Node Package Manager](https://www.npmjs.com/)
