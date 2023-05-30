@@ -28,6 +28,7 @@ RUN bash /tmp/install_firefox.sh && rm -rf /tmp/install_firefox.sh
 ####### Install Dev toolchains for language ########
 
 # Install Kotlin dependencies
+RUN apt-get update
 RUN apt-get install -y openjdk-11-jdk
 RUN apt-get -qq -y install curl unzip zip
 RUN curl -s https://get.sdkman.io | bash
