@@ -9,6 +9,11 @@ BUILD_WEBSTORM=false
 DATAGRIP_VERSION=2023.1.2
 WEBSTORM_VERSION=2023.1.2
 
+echo "--------------------------------------------"
+echo "|  KASM Jetbrains Workspace Image Builder  |"
+echo "--------------------------------------------"
+echo ""
+
 read -p "Build all images? (y/n)?  " choice
 case "$choice" in 
   y|Y ) BUILD_ALL=true;;
