@@ -5,10 +5,12 @@ clear
 BUILD_ALL=false
 BUILD_CLION=false
 BUILD_DATAGRIP=false
+BUILD_GOLAND=false
 BUILD_WEBSTORM=false
 
 CLION_VERSION=2023.1.3
 DATAGRIP_VERSION=2023.1.2
+GOLAND_VERSION=2023.1.2
 WEBSTORM_VERSION=2023.1.2
 
 #######################################################################################
@@ -45,6 +47,14 @@ if [ "$BUILD_ALL" != true ]; then
 	  * )   BUILD_DATAGRIP=false;;
 	esac
 
+	# goland
+	read -p "Build GoLand $GOLAND_VERSION? (y/n)?  " choice
+	case "$choice" in 
+	  y|Y ) BUILD_GOLAND=true;;
+	  n|N ) BUILD_GOLAND=false;;
+	  * )   BUILD_GOLAND=false;;
+	esac
+
 	# webstorm
 	read -p "Build Webstorm $WEBSTORM_VERSION? (y/n)?  " choice
 	case "$choice" in 
@@ -71,6 +81,13 @@ if [ "$BUILD_ALL" != true ]; then
 		echo "[x] Datagrip $DATAGRIP_VERSION"
 	else
 		echo "[ ] Datagrip $DATAGRIP_VERSION"
+	fi
+
+	# goland
+	if [ "$BUILD_GOLAND" == true ]; then
+		echo "[x] GoLand $GOLAND_VERSION"
+	else
+		echo "[ ] GoLand $GOLAND_VERSION"
 	fi
 
 	# webstorm
@@ -105,6 +122,13 @@ fi
 if [ "$BUILD_ALL" == true ] || [ "$BUILD_DATAGRIP" == true ]; then
 	echo "Building Datagrip $DATAGRIP_VERSION..."
 	sudo docker build -t datagrip:$DATAGRIP_VERSION --build-arg DATAGRIP_VERSION=$DATAGRIP_VERSION -f dockerfile-datagrip .
+	clear
+fi
+
+# GoLand
+if [ "$BUILD_ALL" == true ] || [ "$BUILD_GOLAND" == true ]; then
+	echo "Building GoLand $GOLAND_VERSION..."
+	sudo docker build -t goland:$GOLAND_VERSION --build-arg GOLAND_VERSION=$GOLAND_VERSION -f dockerfile-goland .
 	clear
 fi
 
