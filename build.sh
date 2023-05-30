@@ -6,11 +6,13 @@ BUILD_ALL=false
 BUILD_CLION=false
 BUILD_DATAGRIP=false
 BUILD_GOLAND=false
+BUILD_INTELLIJ=false
 BUILD_WEBSTORM=false
 
 CLION_VERSION=2023.1.3
 DATAGRIP_VERSION=2023.1.2
 GOLAND_VERSION=2023.1.2
+INTELLIJ_VERSION=2023.1.2
 WEBSTORM_VERSION=2023.1.2
 
 #######################################################################################
@@ -55,6 +57,14 @@ if [ "$BUILD_ALL" != true ]; then
 	  * )   BUILD_GOLAND=false;;
 	esac
 
+	# intellij
+	read -p "Build IntelliJ IDEA $INTELLIJ_VERSION? (y/n)?  " choice
+	case "$choice" in 
+	  y|Y ) BUILD_INTELLIJ=true;;
+	  n|N ) BUILD_INTELLIJ=false;;
+	  * )   BUILD_INTELLIJ=false;;
+	esac
+
 	# webstorm
 	read -p "Build Webstorm $WEBSTORM_VERSION? (y/n)?  " choice
 	case "$choice" in 
@@ -88,6 +98,13 @@ if [ "$BUILD_ALL" != true ]; then
 		echo "[x] GoLand $GOLAND_VERSION"
 	else
 		echo "[ ] GoLand $GOLAND_VERSION"
+	fi
+
+	# goland
+	if [ "$BUILD_INTELLIJ" == true ]; then
+		echo "[x] InteliJ IDEA $INTELLIJ_VERSION"
+	else
+		echo "[ ] IntelliJ IDEA $INTELLIJ_VERSION"
 	fi
 
 	# webstorm
@@ -129,6 +146,13 @@ fi
 if [ "$BUILD_ALL" == true ] || [ "$BUILD_GOLAND" == true ]; then
 	echo "Building GoLand $GOLAND_VERSION..."
 	sudo docker build -t goland:$GOLAND_VERSION --build-arg GOLAND_VERSION=$GOLAND_VERSION -f dockerfile-goland .
+	clear
+fi
+
+# IntelliJ IDEA
+if [ "$BUILD_ALL" == true ] || [ "$BUILD_INTELLIJ" == true ]; then
+	echo "Building IntelliJ IDEA $INTELLIJ_VERSION..."
+	sudo docker build -t intellij:$INTELLIJ_VERSION --build-arg INTELLIJ_VERSION=$INTELLIJ_VERSION -f dockerfile-intellij .
 	clear
 fi
 
