@@ -2,14 +2,14 @@
 
 clear
 
-BUILD_ALL					=	false
-BUILD_CLION				=	false
-BUILD_DATAGRIP		=	false
-BUILD_WEBSTORM		=	false
+BUILD_ALL=false
+BUILD_CLION=false
+BUILD_DATAGRIP=false
+BUILD_WEBSTORM=false
 
-CLION_VERSION			=	2023.1.3
-DATAGRIP_VERSION	=	2023.1.2
-WEBSTORM_VERSION	=	2023.1.2
+CLION_VERSION=2023.1.3
+DATAGRIP_VERSION=2023.1.2
+WEBSTORM_VERSION=2023.1.2
 
 #######################################################################################
 
