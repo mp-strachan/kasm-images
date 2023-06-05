@@ -14,7 +14,7 @@ ARG WEBSTORM_VERSION
 
 # Install tools
 RUN apt-get update
-RUN apt-get install -y nano git curl wget
+RUN apt-get install -y nano git curl wget unzip
 
 # Install Google Chrome
 RUN wget -O /tmp/install_chrome.sh https://raw.githubusercontent.com/kasmtech/workspaces-images/develop/src/ubuntu/install/chrome/install_chrome.sh
@@ -30,6 +30,9 @@ RUN bash /tmp/install_firefox.sh && rm -rf /tmp/install_firefox.sh
 # Install Node & NPM dependencies
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get install -y nodejs
+
+# Install Deno
+RUN curl -fsSL https://deno.land/install.sh | sh
 
 
 ######## Install Specific Application ########
