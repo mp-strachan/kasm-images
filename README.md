@@ -27,8 +27,10 @@ The following IDE's have images, with the listed tools
 	* [Kotlin](https://kotlinlang.org/)
 
 * [WebStorm](https://www.jetbrains.com/webstorm/) - The smartest JavaScript IDE
+	* UnZip
 	* [NodeJS 18 LTS](https://nodejs.org/)
 	* [Node Package Manager](https://www.npmjs.com/)
+	* [Deno](https://deno.com)
 
 ## How to use
 
